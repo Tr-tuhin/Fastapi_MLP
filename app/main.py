@@ -7,6 +7,7 @@ import numpy as np
 
 # Load the model once at startup
 model = joblib.load("model/iris_model.joblib")
+##if big in size Model->upload->online(hugging face)->online->load(server)->predict
 
 # Iris class names for readability
 class_names = ['setosa', 'versicolor', 'virginica']
