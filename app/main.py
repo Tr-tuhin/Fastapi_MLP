@@ -4,6 +4,15 @@ from fastapi import FastAPI
 from app.schemas import IrisInput, PredictionOutput
 import joblib
 import numpy as np
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or specify your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load the model once at startup
 model = joblib.load("model/iris_model.joblib")
