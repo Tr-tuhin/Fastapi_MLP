@@ -25,18 +25,19 @@ model = joblib.load("model/iris_model.joblib")
 # Iris class names for readability
 class_names = ['setosa', 'versicolor', 'virginica']
 
+
+# Create FastAPI app
+app = FastAPI(
+    title="Iris Classifier API",
+    description="API for predicting Iris species using FastAPI",
+    version="1.0"
+)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Allows all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
-# Create FastAPI app
-app = FastAPI(
-    title="Iris Classifier API",
-    description="API for predicting Iris species using FastAPI",
-    version="1.0"
 )
 
 @app.get("/health")
