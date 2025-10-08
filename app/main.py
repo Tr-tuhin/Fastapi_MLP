@@ -6,13 +6,17 @@ import joblib
 import numpy as np
 from fastapi.middleware.cors import CORSMiddleware
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["https://github.com/Tr-tuhin/iris-insight-api.git"],  # or specify your frontend URL
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["https://github.com/Tr-tuhin/iris-insight-api.git"],  # or specify your frontend URL
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# Add this CORS middleware here
+
+
 
 # Load the model once at startup
 model = joblib.load("model/iris_model.joblib")
@@ -21,6 +25,13 @@ model = joblib.load("model/iris_model.joblib")
 # Iris class names for readability
 class_names = ['setosa', 'versicolor', 'virginica']
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Create FastAPI app
 app = FastAPI(
     title="Iris Classifier API",
